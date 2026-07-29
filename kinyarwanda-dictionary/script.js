@@ -1,0 +1,47 @@
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('searchInput');
+const direction = document.getElementById('direction');
+const resultDiv = document.getElementById('result');
+const examplesDiv = document.getElementById('examples');
+
+searchBtn.addEventListener('click', () => {
+  const query = searchInput.value.trim();
+  if (!query) return;
+
+  const langpair = direction.value;
+  resultDiv.textContent = 'Searching...';
+  examplesDiv.innerHTML = '';
+
+  fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(query)}&langpair=${langpair}`)
+    .then(response => response.json())
+    .then(data => {
+      const matches = data.matches || [];
+
+      if (matches.length === 0) {
+        resultDiv.textContent = 'No translation found.';
+        return;
+      }
+
+      // Sort matches: highest usage count first, then highest match score
+      const sorted = [...matches].sort((a, b) => {
+        const usageDiff = (b['usage-count'] || 0) - (a['usage-count'] || 0);
+        if (usageDiff !== 0) return usageDiff;
+        return b.match - a.match;
+      });
+
+      const best = sorted[0];
+      resultDiv.textContent = best.translation;
+
+      // Show the rest as examples, skipping the one we already used as the main result
+      sorted.slice(1).forEach(match => {
+        const item = document.createElement('div');
+        item.className = 'example-item';
+        item.textContent = `${match.segment} → ${match.translation}`;
+        examplesDiv.appendChild(item);
+      });
+    })
+    .catch(error => {
+      resultDiv.textContent = 'Something went wrong. Please try again.';
+      console.error(error);
+    });
+});

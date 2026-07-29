@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kinyarwanda-English Dictionary</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Kinyarwanda ↔ English Dictionary</h1>
+
+    <div class="search-box">
+      <select id="direction">
+        <option value="en|rw">English → Kinyarwanda</option>
+        <option value="rw|en">Kinyarwanda → English</option>
+      </select>
+      <input type="text" id="searchInput" placeholder="Type a word or phrase...">
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div id="result" class="result"></div>
+    <div id="examples" class="examples"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
