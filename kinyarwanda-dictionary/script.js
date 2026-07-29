@@ -4,6 +4,17 @@ const direction = document.getElementById('direction');
 const resultDiv = document.getElementById('result');
 const examplesDiv = document.getElementById('examples');
 
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    searchBtn.click();
+  }
+});
+
+searchInput.addEventListener('input', () => {
+  resultDiv.textContent = '';
+  examplesDiv.innerHTML = '';
+});
+
 searchBtn.addEventListener('click', () => {
   const query = searchInput.value.trim();
   if (!query) return;
