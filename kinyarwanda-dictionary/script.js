@@ -31,6 +31,14 @@ searchBtn.addEventListener('click', () => {
       });
 
       const best = sorted[0];
+
+      // MyMemory sometimes echoes the input back instead of admitting
+      // it has no real translation — catch that case explicitly.
+      if (best.translation.trim().toLowerCase() === query.trim().toLowerCase()) {
+        resultDiv.textContent = 'No translation found for this word.';
+        return;
+      }
+
       resultDiv.textContent = best.translation;
 
       // Show the rest as examples, skipping the one we already used as the main result
