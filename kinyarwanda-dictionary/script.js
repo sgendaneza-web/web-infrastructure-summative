@@ -22,11 +22,12 @@ searchBtn.addEventListener('click', () => {
         return;
       }
 
-      // Sort matches: highest usage count first, then highest match score
-      const sorted = [...matches].sort((a, b) => {
-        const usageDiff = (b['usage-count'] || 0) - (a['usage-count'] || 0);
-        if (usageDiff !== 0) return usageDiff;
-        return b.match - a.match;
+       const sorted = [...matches].sort((a, b) => {
+        const matchDiff = b.match - a.match;
+        // If match scores are close (within 0.05), treat as a tie and
+        // let usage count decide instead. Otherwise, trust the match score.
+        if (Math.abs(matchDiff) > 0.05) return matchDiff;
+        return (b['usage-count'] || 0) - (a['usage-count'] || 0);
       });
 
       const best = sorted[0];
