@@ -33,4 +33,19 @@ This app uses the [MyMemory Translation API](https://mymemory.translated.net/doc
 
 ## Deployment
 
-*(To be added once deployed to web-01/web-02 behind the load balancer.)*
+The application is deployed as a static site across two web servers (`web-01` and `web-02`), sitting behind an HAProxy load balancer (`lb-01`) that distributes incoming requests between them.
+
+### Steps taken
+
+1. Copied `index.html`, `style.css`, and `script.js` to both `web-01` and `web-02` using `scp`.
+2. Moved each file into nginx's web root (`/var/www/html/`) on both servers, replacing the previous default content.
+3. Verified each server independently served the app correctly via `curl localhost` and a direct browser visit to each server's IP.
+4. Confirmed HAProxy (already configured on `lb-01` from earlier coursework) correctly load-balances between `web-01` and `web-02` using a roundrobin algorithm, and terminates SSL via a Let's Encrypt certificate.
+5. Verified traffic distribution using repeated `curl` requests and checking the `X-Served-By` response header, which alternated between both servers as expected.
+
+### Live URL
+
+The application is publicly accessible at:
+**https://www.soniadev.tech**
+
+Traffic to this domain is automatically load-balanced between `web-01` and `web-02`, with HTTP requests automatically redirected to HTTPS.
