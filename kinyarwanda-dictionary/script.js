@@ -20,7 +20,7 @@ searchBtn.addEventListener('click', () => {
   if (!query) return;
 
   const langpair = direction.value;
-  resultDiv.textContent = 'Searching...';
+  resultDiv.innerHTML = '<span class="loading">Searching...</span>';
   examplesDiv.innerHTML = '';
 
   fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(query)}&langpair=${langpair}`)
