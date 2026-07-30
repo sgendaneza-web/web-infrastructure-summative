@@ -49,3 +49,6 @@ The application is publicly accessible at:
 **https://www.soniadev.tech**
 
 Traffic to this domain is automatically load-balanced between `web-01` and `web-02`, with HTTP requests automatically redirected to HTTPS.
+
+### Video URL
+https://drive.google.com/file/d/1Ggmf79WAet2PmynIl_kRKb6V7KPGJJrq/view?usp=sharing
