@@ -1,6 +1,6 @@
 # Kinyarwanda-English Dictionary
 
-A simple web app that translates between Kinyarwanda and English, showing real example usage alongside each translation — built to help bridge the language gap between public and private school students in Rwanda by making bilingual learning resources more accessible.
+A simple web app that translates between Kinyarwanda and English, showing real example usage alongside each translation — built to help reduce the language barrier issues that occur between Rwandans and foreigners by making bilingual learning resources more accessible.
 
 ## Features
 
@@ -19,8 +19,8 @@ This app uses the [MyMemory Translation API](https://mymemory.translated.net/doc
 
 1. Clone this repository:
 ```bash
-   git clone https://github.com/YOUR_GITHUB_USERNAME/kinyarwanda-dictionary.git
-   cd kinyarwanda-dictionary
+   git clone https://github.com/sgendaneza-web/web-infrastructure-summative.git
+   cd web-infrastructure-summative/kinyarwanda-dictionary
 ```
 2. Open `index.html` directly in your browser, or use a tool like VS Code's Live Server extension for auto-reload during development.
 3. No build steps, no API key, no dependencies — it's a static HTML/CSS/JS app that calls the MyMemory API directly from the browser.
